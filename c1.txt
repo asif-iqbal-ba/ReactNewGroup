@@ -1,0 +1,76 @@
+Class Component and function component
+old version has class components while new version has function components
+
+
+
+how to use variable in innerHtml of 
+any Element 
+we define variable in the class and out of class 
+but we can not change the variable value which is out of class
+
+<element>{variable name}</element>
+
+concatenation of 2 variables
+
+<element>{`${variable name} ${2nd variable name}`}</element>
+` This is called Template literal sign
+
+Normal javascript concatenation
+let fullname= firstName + ' ' + lastName
+
+Note that when we write javascript in html first we put 
+curly braces {}
+
+Array 
+let arr =['Asif', 'Irfan', 'Arif']
+
+map function
+یہ ES6 
+جاوا اسکرپٹ کا ایسا فنکشن ھے جو ارے کوآٰئیٹریٹ یعنی خود لوپ کرتا ھےاس کا طریقہ ایسے ھے
+arr.map((item,index)=>{
+	console.log(index,arr)
+	})
+نوٹ اگر اس طرح سے ہم کوئی 
+html element کو
+render 
+کرواتے ہیں توہمیں ہر
+Element 
+کے ساتھ ایک 
+Attribute key
+دینا پڑے گا جو یونیک ہونا چاہیے مثلا اگر ھم 
+unorder list 
+کے 
+items
+کو fill 
+کروانا ہو تو
+arr.map((item,index)=>{
+	<li key={index}>item</li>
+	})
+
+Multiple components in a single file
+نوٹ یاد رکھیں کمپونینٹ کا جو بھی نام رکھیں گے تو اس کا پہلا لیٹر بڑا رکھیں گے
+
+Short cut key or intelences is not working 
+if we want to use shortcut keys
+
+then we should change file extenstion from js to jsx
+or increase js to x
+
+bootstrap in React
+Go to chrom or any browser and write react bootstrap
+then click krn
+https://react-bootstrap.github.io/ then click krn 
+Get Started button pr
+Command copy krn or paste krn terminal/Command prompt pr
+npm install react-bootstrap bootstrap
+lkn yad rakien k npm start wali command prompt ko ctrl +  c kr k
+stop krna hoga phr npm start karna hoga installation k bad
+ye code Index.js me de kar import krn
+import 'bootstrap/dist/css/bootstrap.min.css';
+Index.js me import karne se pori app me bootstrap use ki ja sakti ha
+isko use k se krn ge?
+2 methods hn isko use karne k
+1st Old Bootstrap ki website open kar ln then
+	Example hm lagana cha rahe hn button bootstrap ki site pr
+components me button pr gae or copy kar lia 
+phr is ko paste kardia or class ko className kar dia
