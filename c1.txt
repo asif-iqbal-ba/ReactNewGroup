@@ -74,3 +74,27 @@ isko use k se krn ge?
 	Example hm lagana cha rahe hn button bootstrap ki site pr
 components me button pr gae or copy kar lia 
 phr is ko paste kardia or class ko className kar dia
+-------------------
+single file me multiple components banana or export karna
+
+multiple components usually jese hm banate hn banae ge or
+export defalult componentName k jaga
+export {comoponenetName1,componentName2}
+krn ge or jis jaga b import karna ho to 
+import {} from 'path'
+{} me hm componenets k nam de dn ge
+
+------
+image from project
+image lagane k lea hm import kart hn
+import NAME from 'Path/imageName.ext'
+<img src={NAME} alt=""/>
+-------------
+HTML to jsx converter
+Hm bootstrap se normal koe b html component le kar os ko
+ya to manually class ko className me change krn ya
+online converter use kr k convert kr ln
+go to browser google chrome
+type html to jsx converter
+click link
+https://magic.reactjs.net/htmltojsx.htm
