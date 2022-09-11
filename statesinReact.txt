@@ -1,0 +1,103 @@
+State kia ha?
+State ki lafzi meaning ha halat.
+State component ka ya component me ak object ha or object k bare me hme
+maloom ha k keys or values hoti hn like
+{id:1,Name:"Muhammad Sabtain",FatherName:"Asif Iqbal",cell:"030622"}
+ye state component ko render karti ha j se he object change hoga 
+re rendering ho jae ge. Ye component k data ko manage krta ha
+
+state ko padne se pehle hm input ko thora dekhien ge hm react me
+input k value ko k se get or set krn ge
+Yad rakhien k react me hm dom use nahi krte j se javascript me use
+kart the means k 
+	document.getElementById('')
+to ye react me use nahi hota iski jaga input k data ko state se manage
+krte hn. React me input me value k attribute use karte hn or os ko
+state k variable se contraol karte hn like
+<input type='text' value={stateVariableName}
+
+State banti k se ha?
+first of all ak life cycle create hoga jis ko hm constructor kehte hn
+to sab se pehle ak constructor create hoga constructor k key word se
+he os k andar super() ka keyword use hoga 
+Note that ye class components me use hota ha function components 
+me ye use nahi hota
+constructor(){
+	super()
+}
+phr constructor k andar iski state bane ge
+
+constructor(){
+	super()
+	this.state = {
+		name="Asif Iqbal"
+		email="asif@gmail.com"
+	}
+}
+
+<h2>{this.state.name}</h2>
+
+React me function likhna
+React me function likhne k lea hm function ka key word use nahi
+krn ge
+hm function different method se likh sakte hn
+directly function ka nam de kar likhe ge
+functionName(){
+	}
+
+arrow function
+functionName = () =>{
+	}
+difference between arrow function and simple function
+firse hm simple function use kar k dekhte hn
+phr hm arrow function use krn ge
+hm ne apne input k neche ak button banaya
+
+normal function me this ka matlab ha k is function k andar agar koe
+variable ya object ya jo b mojod ho
+jab ke 
+Arrow function me this ka matlab ha k jo kuch class me mojod ho this
+k through wo b Arrow funciton me accessable hota
+accessable hota ha
+Neche hm ne ak component banaya ha 
+os k ander hm javaScript hamesha render() se bahar likhe ge
+to is constructor or state banana hm already learn kar chuke hn
+
+class Header extends React.Component{
+  constructor(){
+    super()
+    this.state ={
+      name:"Asif Iqbal",
+      email:"asif@gmail.com"
+    }
+  }
+
+
+  setName =()=>{
+    console.log('Running',this.state.name)
+  }
+/*Hm ne render k andar h2 me {this.state.name} de state object me 
+se this.state kar k koe b key k throuh key get kar sakte hn 
+*/
+  render() {
+    return (
+      <div>
+        <h2>
+          {this.state.name}
+        </h2>
+        <input type="text" placeholder='Enter Name Here' />
+        <button onClick={this.setName}>Change Name</button>
+      </div>
+
+    );
+  }
+}
+
+state ki kisi key ki value ko change k se krn ge
+like name me Asif Iqbal ki jaga kuch or set karwana ho input k through
+to hm ne function like
+setName(){
+    console.log('Running')
+    console.log('Running',this.state.name)
+  }
+or is function ko button k click pr call krn ge
