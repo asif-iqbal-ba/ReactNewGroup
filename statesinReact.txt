@@ -98,6 +98,81 @@ like name me Asif Iqbal ki jaga kuch or set karwana ho input k through
 to hm ne function like
 setName(){
     console.log('Running')
+    console.log(this.state.name)
+  }
+or is function ko button k click pr call krn ge is me Running wala 
+console to kam kre ga but this.state.name kam nahi kare ga undefined
+ka error console me show kre ga Q k normal function me this ka mtlb hota 
+ha is function ka wo function k bahar mojood state ko access nahi kar 
+satkta function k bahar mojood objects ko access karne k lea hm
+Arrow function ko use krn ge
+agar is function ko is tarah likha ja to run hoga
+
+setName =()=>{
     console.log('Running',this.state.name)
   }
-or is function ko button k click pr call krn ge
+Ab hm button k click pr state ko change krn ge
+
+setName = (e) =>{
+	//this.state.name = "Irfan"
+	this.state.name = e.target.value  
+	}
+
+input k onChange event pr b hm state ki value ko change kr
+sakte hn
+
+<input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setName(e.target.value)} />
+is method me hm onChange k event pr callback function me setName ka function call kr rahe hn
+jis me parmeter e.target.value means k hm jis input me hn os ki value
+ko function me pass kar rahe hn or setName me hm e k throug this.state.name
+ki property me set kr rahe hn
+
+<input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setState({name:e.target.value})} />
+is method me hm onChange event me callback function me this.setState me directly object me name ki
+property me input wali value set karwa rahe hn
+
+ab hm chahte hn k input me jb change ho to value name ki property ko
+state me change karo
+or ab hm setName vale function me aa name: me is ko de do ga to ye 
+button click call karne pr aa jae ge
+Means k agar hm kisi button k click event pr state ki kisi key ki value 
+ko change karna ho to hm is tara krn ge
+
+Props
+Props kia hn?
+Kia ak component kis state kisi dosre component me available hogi?
+Jee Nahi availabl nahi hogi.
+To is lea ak component ka data kisi dosre component me pass karwana ho
+to hm props use krn ge 
+use k se karte hn
+Jis tara hm html me element ka Attribute dete hn osi tarah hm component
+ko de sakte hn
+ Examp <ComponentName propName=value />
+or os component me render k andar this.props krn ge to tamam props ak
+object ki tara mil jae ge
+is ko hm parent se child me data sending b keh sakte hn
+
+Isi tara hme agar koe data child se parent me trasfer karna ho
+Example hme Header se parent (App.js) me koe data send karna ho to
+parent me ak function bana kar os ko child me props me send kar k child
+me se os ko kisi event pr call krn ge to parent me data recieve ho
+jae g Q k function call parent me ho raha ha
+
+Parent me function
+
+getData = (dataFromChild) =>{
+    console.log(dataFromChild)
+  }
+
+parent me child component calling
+
+     <Child getData = {this.getData} />
+
+Child component me coding
+
+<div>
+                This is Child
+                <button onClick={()=>this.props.getData('This Data is from Child')} >Send Data to Parent</button>
+            </div>
+
+

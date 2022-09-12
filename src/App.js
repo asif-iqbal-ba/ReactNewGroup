@@ -2,29 +2,44 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import BasicTextFields from './Components/Textfeilds.js'
+
+import Child from './Components/Child';
+
 let fName ='Abdullah'
 
+
+
 class Header extends React.Component{
+  
   constructor(){
     super()
     this.state ={
       name:"Asif Iqbal",
-      email:"asif@gmail.com"
+      email:"asif@gmail.com",
+     // value :"",
     }
   }
 
-  setName =()=>{
-    console.log('Running',this.state.name)
-
+  
+  setName =(a)=>{
+    //console.log('Running',this.state.name)
+    console.log(a)
+    this.setState({
+      //name:a,
+      name:this.state.value
+    })
   }
   render() {
+    console.log(this.props)
     return (
       <div>
         <h2>
           {this.state.name}
         </h2>
-        <input type="text" placeholder='Enter Name Here' />
-        <button onClick={this.setName}>Change Name</button>
+        <input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setName(e.target.value)} />
+        {/* <input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setState({name:e.target.value})} /> */}
+        <input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setState({value:e.target.value})} />
+        <button onClick={(e)=>{this.setName('A')}}>Change Name</button>
       </div>
       // <div>
       //   <h2 style={{color:"red"}}>Header Component</h2>
@@ -72,13 +87,17 @@ class Header extends React.Component{
 }
 
 class App extends React.Component{
+  getData = (dataFromChild) =>{
+    console.log(dataFromChild)
+  }
   render(){
     // let myName = 'Asif'
     // let arr = ['a','b','c']
     // let todoes =[{id:1,Name:"Asif"},{id:2,Name:"Iqbal"}]
     return(
       <div>
-        <Header/>
+        <Child getData = {this.getData} />
+        <Header hPage="Application Page"/>
 
         {/* <h1>
           Hello World {myName} {fName} {arr}
