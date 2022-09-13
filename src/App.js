@@ -1,137 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
-import BasicTextFields from './Components/Textfeilds.js'
-
-import Child from './Components/Child';
-
-let fName ='Abdullah'
-
-
-
-class Header extends React.Component{
-  
-  constructor(){
-    super()
-    this.state ={
-      name:"Asif Iqbal",
-      email:"asif@gmail.com",
-     // value :"",
-    }
-  }
-
-  
-  setName =(a)=>{
-    //console.log('Running',this.state.name)
-    console.log(a)
-    this.setState({
-      //name:a,
-      name:this.state.value
-    })
-  }
-  render() {
-    console.log(this.props)
-    return (
-      <div>
-        <h2>
-          {this.state.name}
-        </h2>
-        <input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setName(e.target.value)} />
-        {/* <input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setState({name:e.target.value})} /> */}
-        <input type="text" placeholder='Enter Name Here' onChange={(e)=>this.setState({value:e.target.value})} />
-        <button onClick={(e)=>{this.setName('A')}}>Change Name</button>
-      </div>
-      // <div>
-      //   <h2 style={{color:"red"}}>Header Component</h2>
-      //   <button type="button" className="btn btn-danger">Danger</button>
-      // </div>
-
-      // <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      //   <div className="container-fluid">
-      //     <a className="navbar-brand" href="#">Navbar</a>
-      //     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      //       <span className="navbar-toggler-icon" />
-      //     </button>
-      //     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      //       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-      //         <li className="nav-item">
-      //           <a className="nav-link active" aria-current="page" href="#">Home</a>
-      //         </li>
-      //         <li className="nav-item">
-      //           <a className="nav-link" href="#">Link</a>
-      //         </li>
-      //         <li className="nav-item dropdown">
-      //           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      //             Dropdown
-      //           </a>
-      //           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-      //             <li><a className="dropdown-item" href="#">Action</a></li>
-      //             <li><a className="dropdown-item" href="#">Another action</a></li>
-      //             <li><hr className="dropdown-divider" /></li>
-      //             <li><a className="dropdown-item" href="#">Something else here</a></li>
-      //           </ul>
-      //         </li>
-      //         <li className="nav-item">
-      //           <a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled="true">Disabled</a>
-      //         </li>
-      //       </ul>
-      //       <form className="d-flex">
-      //         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-      //         <button className="btn btn-outline-success" type="submit">Search</button>
-      //       </form>
-      //     </div>
-      //   </div>
-      // </nav>
-    );
-  }
-}
+import React  from "react";
 
 class App extends React.Component{
-  getData = (dataFromChild) =>{
-    console.log(dataFromChild)
-  }
-  render(){
-    // let myName = 'Asif'
-    // let arr = ['a','b','c']
-    // let todoes =[{id:1,Name:"Asif"},{id:2,Name:"Iqbal"}]
-    return(
-      <div>
-        <Child getData = {this.getData} />
-        <Header hPage="Application Page"/>
 
-        {/* <h1>
-          Hello World {myName} {fName} {arr}
-        </h1>
+    constructor(){
+        super()
+        this.state ={
+            todoes :[
+                "Asif",
+                "Shahzaib",
+                "Abdul Hameed",
+                "Mubbashir"
+            ],
+            value :''
+        }
+    }
+    addNewItem = ()=>{
+        //Method 1
+       // this.state.todoes.push(this.state.value)
+       // this.setState({todoes:this.state.todoes})
+       //Method 2
+       this.setState({
+        todoes:[...this.state.todoes,this.state.value],
+        value:''
+       })
+    }
 
-        <ul>
-          {todoes.map((item,index)=>{
-            return <li key={index}>{`${item.id} - ${item.Name}`} </li>
-          })}
-        </ul>
-        <BasicTextFields /> */}
-      </div>
-    )
-  }
+    deleteItem = (index)=>{
+        this.state.todoes.splice(index,1)
+        this.setState({
+            todoes:this.state.todoes
+        })
+    }
+    editItem = (index)=>{
+
+    }
+    render() {
+        //Destructing of an object
+        let {todoes,value} = this.state
+        return (
+            <div>
+                <input type="text" placeholder="Enter Value Here" value={value} onChange={(e)=>this.setState({value:e.target.value})} />
+                <button onClick={this.addNewItem} >Add Item</button>
+                <h1>
+                    <ul>
+                        {todoes.map((item,index)=>{
+                            return <li key={index}>{item}
+                            <button onClick={()=this.editItem(index)} >Edit</button>
+                            <button onClick={()=>this.deleteItem(index)}>Delete</button></li>
+                        })}
+                    </ul>
+                </h1>
+            </div>
+        );
+    }
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
-export default App;
+export default App
