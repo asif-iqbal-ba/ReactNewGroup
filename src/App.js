@@ -1,4 +1,7 @@
+
+//To Comunicate to firebase
 import React  from "react";
+import firebase from "./config/firebase";
 
 class App extends React.Component{
 
@@ -6,10 +9,10 @@ class App extends React.Component{
         super()
         this.state ={
             todoes :[
-                "Asif",
-                "Shahzaib",
-                "Abdul Hameed",
-                "Mubbashir"
+                {title:"Asif",edit:false},
+                {title:"Shahzaib", edit:false},
+                {title:"Abdul Hameed", edit:false},
+                {title:"Mubbashir", edit:false}
             ],
             value :''
         }
@@ -19,8 +22,11 @@ class App extends React.Component{
        // this.state.todoes.push(this.state.value)
        // this.setState({todoes:this.state.todoes})
        //Method 2
+       var obj = {title:this.state.value}
+       //firebase.database().ref('/').child("todoes")
+        //.push(obj)
        this.setState({
-        todoes:[...this.state.todoes,this.state.value],
+        todoes:[...this.state.todoes,obj],
         value:''
        })
     }
@@ -31,9 +37,29 @@ class App extends React.Component{
             todoes:this.state.todoes
         })
     }
-    editItem = (index)=>{
-
+    editItem = (index,val)=>{
+        this.state.todoes[index].edit = true
+        this.setState({
+            todoes:this.state.todoes
+        })
     }
+
+    handleChagne = (e,index) => {
+        
+        let eState = this.state.todoes
+        //console.log(eState)
+        eState[index].title = e.target.value
+        this.setState({todoes:eState})
+        //console.log(this.state.todoes)
+        
+    }
+
+    update = (index)=>{
+        let eState = this.state.todoes
+        eState[index].edit = false
+        this.setState({todoes:eState})
+    }
+
     render() {
         //Destructing of an object
         let {todoes,value} = this.state
@@ -44,8 +70,9 @@ class App extends React.Component{
                 <h1>
                     <ul>
                         {todoes.map((item,index)=>{
-                            return <li key={index}>{item}
-                            <button onClick={()=this.editItem(index)} >Edit</button>
+                            return <li key={index}>{item.edit ? <input value={item.title} type="text" onChange={(e)=>this.handleChagne(e,index)} /> : item.title}
+                            {item.edit ? <button onClick={()=>this.update(index)}>Update</button> :
+                            <button onClick={()=>this.editItem(index,item.title)} >Edit</button> }
                             <button onClick={()=>this.deleteItem(index)}>Delete</button></li>
                         })}
                     </ul>

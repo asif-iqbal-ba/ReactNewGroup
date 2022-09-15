@@ -1,0 +1,179 @@
+First of all hm apne state ka sturcture change karte hn
+last me hm ne todoes me array me item place kea the 
+ab hm todoes me array me object rakhte hn to
+state is tarah ho jae ge
+
+this.state ={
+            todoes :[
+                {titel:"Asif"},
+                {titel:"Shahzaib"},
+                {titel:"Abdul Hameed"},
+                {titel:"Mubbashir"}
+            ],
+            value :''
+        }
+phr jahan hm li ko return karwa rahe hn woha b change ho jae ge
+
+<ul>
+     {todoes.map((item,index)=>{
+                            return 
+			<li key={index}>{item.titel}
+                            <button onClick={()=>this.editItem(index)} >Edit</button>
+                            <button onClick={()=>this.deleteItem(index)}>Delete</button>
+			</li>
+			})}
+</ul>
+
+Ab addItem me ye code hoga
+
+addNewItem = ()=>{
+       var obj = {title:this.state.value}
+       this.setState({
+        todoes:[...this.state.todoes,obj],
+        value:''
+       })
+    }
+
+Ternary operater
+condition ? operation : operation
+condition true operation else operation
+?=Trur
+:=else
+
+Ab hm structure me mazeed change krn ge
+object me ak new key edit k name se rakhi or iski type boolean 
+means k true ya false hogi
+this.state ={
+            todoes :[
+                {titel:"Asif",edit:false},
+                {titel:"Shahzaib",edit:false},
+                {titel:"Abdul Hameed",edit:false},
+                {titel:"Mubbashir",edit:false}
+            ],
+            value :''
+        }
+
+Ab render function a se hoga
+
+<ul>
+     {todoes.map((item,index)=>{
+                            return 
+			<li key={index}>{item.edit ? <input type='text' value={item.title} /> : item.titel}
+                            <button onClick={()=>this.editItem(index)} >Edit</button>
+                            <button onClick={()=>this.deleteItem(index)}>Delete</button>
+			</li>
+			})}
+</ul>
+input me value={item.title} dene se Edit ka button click karne se input
+k andar object me mojood pehle wali value nazar aane lge gi
+
+Ab edit k button click pr os object k edit k value true ho jae
+True hone pr li me input show ho jae ga
+isi ternary operator lga kar hm edit k click but update ka button show
+krwa sakte hn
+
+                    <ul>
+                        {todoes.map((item,index)=>{
+                            return <li key={index}>{item.edit ? <input value={item.title} type="text" /> : item.title}
+                            {item.edit ? <button>Update</button> :
+                            <button onClick={()=>this.editItem(index,item.title)} >Edit</button> }
+                            <button onClick={()=>this.deleteItem(index)}>Delete</button></li>
+                        })}
+                    </ul>
+Ab hm edit wale text box me onChange k function me value ko set kr ln ge
+Hm ne javaScript me ak function bana dia handleChange k name se
+
+handleChange = (e,index) =>{
+}
+
+or is ko edit wale input k onChange pr call kar lia
+
+<ul>
+{
+todoes.map(
+(item,index)=>
+ {
+  return 
+	<li key={index}>
+  {
+   item.edit ? <input value={item.title} type="text" 
+   onChange={(e)=>this.handleChagne(e,index)} /> : item.title
+  }
+  {
+  item.edit ? <button>Update</button> :
+  <button onClick={()=>this.editItem(index,item.title)} >Edit</button> 
+  }
+  <button onClick={()=>this.deleteItem(index)}>Delete</button>
+	</li>
+}
+)
+}
+</ul> 
+
+handleChange function ki coding
+
+handleChagne = (e,index) => {
+        
+        let eState = this.state.todoes
+        //console.log(eState)
+        eState[index].title = e.target.value
+        this.setState({todoes:eState})
+        //console.log(this.state.todoes)
+        
+    }
+is me ak variable bana kar todoes ki state ko os me rakh dia eState
+phr eState k os index pr mojood title ko change kia
+phr todoes ki state set karwate hoe hm ne wo variable ka array
+set karwa dia is tarah se state b change ho gae or rerender ho gaya
+or update k click event pr todoes k edit me false kr dn ge
+
+update = (index)=>{
+        let eState = this.state.todoes
+        eState[index].edit = false
+        this.setState({todoes:eState})
+    }
+
+<ul>
+                        {todoes.map((item,index)=>{
+                            return <li key={index}>{item.edit ? <input value={item.title} type="text" onChange={(e)=>this.handleChagne(e,index)} /> : item.title}
+                            {item.edit ? <button onClick={()=>this.update(index)}>Update</button> :
+                            <button onClick={()=>this.editItem(index,item.title)} >Edit</button> }
+                            <button onClick={()=>this.deleteItem(index)}>Delete</button></li>
+                        })}
+                    </ul>
+
+
+
+Firebase
+
+npm i firebase
+
+is command se firebase hm apne project me install kr ln ge
+phr hm ne ak src k under ak folder config k name se bana lete
+or os folder me firebase.js k name se ak file bana kar configuratin
+rakh dn ge
+Note that folder or files k name ap apni marzi se rakh sakte hn
+but name assign krte hoe naming convention ko must dimagh me rakhien
+
+import * as firebase from 'firebase/app'
+import 'firebase/database'
+//Ya jo b service hme use karni expamle agar hme firebase auth use karna ho to
+import 'firebase/auth'
+//or connection string ko b copy paste kr dn ge
+
+firebase.js coding
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBlJRGTxANMrZ1NVD00_2dlnZBpex8wrCU",
+    authDomain: "socialauth-82a2d.firebaseapp.com",
+    projectId: "socialauth-82a2d",
+    storageBucket: "socialauth-82a2d.appspot.com",
+    messagingSenderId: "161150821521",
+    appId: "1:161150821521:web:02ebeb04881da3b2768b30",
+    measurementId: "G-H4K86ZJZ3W"
+  };
+  
+  // Initialize Firebase
+  export default firebase.initializeApp(firebaseConfig)
+
+Ab hm add k button pr firebase me object safe karwien ge
