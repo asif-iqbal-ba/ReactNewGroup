@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/database'
 //Ya jo b service hme use karni expamle agar hme firebase auth use karna ho to
-import 'firebase/auth'
+//import 'firebase/auth'
 //or connection string ko b copy paste kr dn ge
 
 const firebaseConfig = {

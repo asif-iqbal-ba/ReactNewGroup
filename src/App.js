@@ -2,7 +2,7 @@
 //To Comunicate to firebase
 import React  from "react";
 import firebase from "./config/firebase";
-
+import {getDatabase, set, push,child,ref} from 'firebase/database'
 class App extends React.Component{
 
     constructor(){
@@ -22,9 +22,20 @@ class App extends React.Component{
        // this.state.todoes.push(this.state.value)
        // this.setState({todoes:this.state.todoes})
        //Method 2
+       let db = getDatabase(firebase)
+       console.log(db)
+       let refDB = ref(db,'todoItems/items')
+       let key = push(refDB).key
+       console.log(key)
+       let newChild = child(refDB,key)
+       
        var obj = {title:this.state.value}
+       var objN = obj
+       objN.Key = key
+       set(newChild,objN)
        //firebase.database().ref('/').child("todoes")
         //.push(obj)
+        
        this.setState({
         todoes:[...this.state.todoes,obj],
         value:''
