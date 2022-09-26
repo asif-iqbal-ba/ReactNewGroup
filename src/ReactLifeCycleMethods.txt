@@ -1,0 +1,72 @@
+React Life Cycle Methods
+Life Cycle k 3 stages hote hn jis tarah real life me hote hn
+
+Birth
+Growing
+updating
+Finish
+
+1-Mounting
+2-updating
+3-UnMounting
+
+Component banaya 
+Mounting mean j se hm ne Component banaya os me hm constructor banaya
+os me hm render banaya
+or j se run kia to Component Mount ho gaya
+
+
+J se he hamara page load ho to hm chahate hn k hm database se data load ho to 
+hm normally 
+
+Mounting ka first life Cycle Mounting
+is me state etc banate hn
+jb b Component start hoga to constructor run hoga
+
+2nd Life cylce jo run hoga woh ha getDerivedStateFromProps
+
+Example understand karne k lea hm App.jsx me routing k Component ko commit karte hn or
+state bante hn jis me ak key ha count jis k value hm ne 0 put kia
+
+getDerivedStateFromProps wala life cycle static ha 
+
+static ka key word use karte hoe method write krn getDerivedStateFromProps
+static getDerivedStateFromProps(){
+    console.log('Runnig getDerivedStateFromProps')
+}
+
+j se he hm ne browser pr out put watch kia to hme nazar aa gaya k run ho raha ha
+or sath me ak warning nazar a rahi ha
+
+Warning: App.getDerivedStateFromProps(): 
+A valid state object (or null) must be returned.
+ You have returned undefined
+
+ ye static mean k sukooni halat mean k a sa object jis ki halat change nahi hoti 
+ ho 
+ Ye static mean k unchangeable value ko returned kart ha is lea is me returned ka 
+ key word use karte hoe kuch na return krn ge jo state me set ho jae ga 
+ is ko hm state initlization b ke sakte hn
+
+ index.js me 
+ <React.StrictMode>
+ </React.StrictMode>
+ is wraper ki waja se code 2 time run hota ha is lea console 2 times nazar aa raha ha
+
+ ye is lea lagaya gaya ha k kuch a sa code hota ha jis ko React support nahi karta
+ is se sari warning etc de raha ha k ye supported nahi is ko supported kar dn
+
+ Note that abi hm mounitng learn kar rahe hn or getDerivedStateFromProps ko
+ mounting me he dekh rahe hn is ko abi updating me nahi dekh rahe
+
+ 3rd Life cycle render ha
+
+ 4th Life cycle method ha componentDidMount
+
+initlization mean k agar hme apne Component me kahi se start me data etc call 
+karna ho to hm componentDidMount me krn ge
+
+is me hm data q mangwate hn k q k componentDidMount render run hone k bad run
+hota ha is lea render hone k bad ui me data ko show karwane k lra 0s ko state me 
+set kr dn ge
+

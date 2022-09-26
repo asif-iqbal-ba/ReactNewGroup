@@ -1,0 +1,355 @@
+React me spa (single page application)
+is me page change ya reload nahi hota
+is me agar hme pages change karwane ho to page to change nahi
+hota component chagne hota ha is k lea hm use karte hn react routing
+React Routing kia hoti ha?
+React Routing me alag alag component k alg alg routes bana kar de deti ha
+
+Route ki word meaning ha Rasta
+is k lea hm jo package use karte hn os ka nam ha react router dom
+https://v5.reactrouter.com/web/guides/quick-start
+Note that latest react me latest router version use karte hn
+npm install react-router-dom
+
+again start command
+npm start
+
+project k root k file index.js me ye import karien
+
+import { BrowserRouter } from 'react-router-dom';
+
+phr <App /> component ko BrowserRouter me is tarah pack kr dien
+
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+  
+
+hm ne last App.jsx ko Rename(apptodofirebase.jsx) kar dia ta k woh work save rahe
+or new App.jsx create kar de
+
+
+
+import React from "react";
+
+
+class App extends Component{
+    
+    render(){
+        return(
+            <h1>
+                App
+            </h1>
+        )
+    }
+}
+
+export default App
+
+Ab hm routing learn karne k lea conatianer ka name se ak folder bana dete hn
+yad rahe container ki jaga ap kuch b name use kar sakte hn but 
+Naming convention ko mind me rakh kar name dena chaea 
+Or is folder me 2 component Home.jsx or About.jsx bana lete hn
+
+Ab hm chahate hn k jb hamari web/app load ho to sb se pehle Home ka page show ho
+or jb About k link pr click kare to about ka page show ho
+
+Routing k lea hm ak seprate file banate hn  
+Note that seprate file banana neccesary nahi lkn code ko manage or understandable
+rakhne k lea hm seprate file bana lete hn
+hm config k folder me
+Router.jsx
+
+React Router dom ki web site se  ye imports copy kar k rakh dia
+
+import React from "react";
+import {
+//  BrowserRouter as Router,
+  //Switch,
+  Routes,
+  Route,
+  //Link
+} from "react-router-dom";
+
+initally BrowserRouter,Switch or link ki need nahi to in ko delete ya commit kar dete hn
+or Routes ki need ha to os ko write down kar lete hn 
+
+or AppRouter ka class component bana kar is me 
+<Routes> </Routes>
+
+ko return karwa dia
+is ka child banate hn
+
+Routes 2 props accept karta ha
+1- Path
+2-component
+
+<Routes>
+    <Route exact path="/" element={} />
+    <Route path="/about" element={} />               
+</Routes>
+
+ab Home or About ko import kar dia
+
+import Home from '../containers/Home'
+import About from '../containers/About'
+
+phr element me in dono ko likh dia is tarah
+<Home />
+<About />
+
+to code kuch is tarah ho gaya
+
+<Routes>
+    <Route exact path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />               
+</Routes>
+
+ab agar browser pr Address bar me is tarah hoga
+http://localhost:3000/
+or body me 
+Home 
+Nazar aa raha hoga
+Address me About likhe ge to body me
+http://localhost:3000/About
+About 
+Nazar aa ga means ki hm ne routing successfully use kar lia
+
+Ab hm links banae ge yad rahe html me hm linking k lea anchor a ka element
+use karte the ab is me kis tara karte hn dekhe
+
+hm ne import statement me Link ko uncommit kar dia
+or return( 
+    k bad ak empty <> </> laga dia phr closing tag ko last me laga dia
+
+    render(){
+        return(
+            <>            
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+
+phr is tarah nav ka element is andar banaya
+
+render(){
+        return(
+            <>
+            <nav>                
+            </nav>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+
+
+phr nav me unorder list banae
+
+render(){
+        return(
+            <>
+            <nav>
+                <ul>
+                    <li>
+                        
+                    </li>
+                    <li>
+                        
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+
+phr li me is tara Link lagaya
+
+render(){
+        return(
+            <>
+            <nav>
+                <ul>
+                    <li>
+                        <Link>Home</Link>
+                    </li>
+                    <li>
+                        <Link>About</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+
+phr Link me to ka Attribute include kia
+
+render(){
+        return(
+            <>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="" >Home</Link>
+                    </li>
+                    <li>
+                        <Link to="">About</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+
+phr to ki values set ki
+
+render(){
+        return(
+            <>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/" >Home</Link>
+                    </li>
+                    <li>
+                        <Link to="About">About</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+
+To hme navbar ban gae click karne pr Home ya About ka component load ho raha ha
+
+Complete code is tarah hoga 
+
+import React from "react";
+import {
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
+
+import Home from '../containers/Home'
+import About from '../containers/About'
+class AppRouter extends React.Component{
+    render(){
+        return(
+            <>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/" >Home</Link>
+                    </li>
+                    <li>
+                        <Link to="About">About</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />               
+            </Routes>
+            </>
+        )
+    }
+}
+
+export default AppRouter
+
+App.jsx ka code is tarah hoga
+
+import React from "react";
+import AppRouter from "./config/Router";
+
+class App extends React.Component{
+    
+    render(){
+        return(
+            <AppRouter />
+        )
+    }
+}
+
+export default App
+
+Ye routing hm ne jo learn ki is ko hm html me simple linking ya anchor se
+linking kehte hn
+<a href="" > Home </a>
+<a href=""> About </a>
+
+jb k java script me hm 
+window.location("page address")
+location.assign("")
+location("")
+
+etc 
+
+React me programing ya java script k through k se coding likh kar
+redirect krn ge
+is ko understand karne k lea hm ne 2 new component bana lea
+Contact
+Shop
+inko Router.jsx me import kar lea
+or Navbar me 2 li bana de
+is k sath Routes k wraper me 2 Route bana lea
+
+<Route path="/contact" element={<Contact />}/>
+<Route path="/contact" element={<Shop />}/>
+
+or li me Link k bajae 2 button bana lea
+
+<ul>
+                    <li>
+                        <Link to="/" >Home</Link>
+                    </li>
+                    <li>
+                        <Link to="About">About</Link>
+                    </li>
+                    <li>
+                        <button onClick={()=>this.goto("/contact")}>
+                            Contact
+                        </button>
+                    </li>
+                    <li>
+                        <button onClick={()=>this.goto("/shop")}>
+                            Shop
+                        </button>
+                    </li>
+</ul>
+
+or ak function bana lea
+
+goto = (pageAddress)=>{
+
+    }
+
+is me pageAddress woh parameter ha jis me function ko call karte hoe page ka 
+address send krn ge
+
+hme ne button k click events pr goto ko call karte hoe parameter me link ka
+address pass karwa dia ha
+ab hm ne function me console.log karwa kar check kar lia ka kam kar raha ha k nahi
+
